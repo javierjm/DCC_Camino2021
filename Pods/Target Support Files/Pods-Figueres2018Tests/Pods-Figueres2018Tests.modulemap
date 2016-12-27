@@ -1,0 +1,6 @@
+framework module Pods_Figueres2018Tests {
+  umbrella header "Pods-Figueres2018Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

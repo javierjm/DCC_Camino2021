@@ -1,0 +1,17 @@
+PODS:
+  - mopub-ios-sdk (4.11.1):
+    - mopub-ios-sdk/MoPubSDK (= 4.11.1)
+  - mopub-ios-sdk/MoPubSDK (4.11.1)
+  - SVProgressHUD (2.1.1)
+
+DEPENDENCIES:
+  - mopub-ios-sdk
+  - SVProgressHUD
+
+SPEC CHECKSUMS:
+  mopub-ios-sdk: 099068378872b60ae5be882dbcfbaa3a8a2b1c36
+  SVProgressHUD: 1127180503b9a308ddf7006f3cc58fc05cc1092d
+
+PODFILE CHECKSUM: 4a121fdd73feab2594a4711d318b7129edd88355
+
+COCOAPODS: 1.1.1
