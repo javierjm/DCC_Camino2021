@@ -10,15 +10,10 @@ class LoginWorker
         self.loginStore = loginStore
     }
     
-    func fetchUser(_ id: String, _ completionHandler: @escaping (_ user: PersonModel?) -> Void)
+    func fetchUser(_ id: String, _ completionHandler: @escaping PersonStoreFetchPersonCompletionHandler)
     {
-        loginStore.fetchPerson(id) { (user: () throws -> PersonModel?) ->Void in
-            do {
-                let user = try user()
-                completionHandler(user!)
-            } catch {
-                completionHandler(nil)
-            }
+        loginStore.fetchPerson(id) { (result: PersonStoreResult<PersonModel>) in
+            completionHandler(result)
         }
     }
 }

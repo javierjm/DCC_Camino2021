@@ -12,13 +12,14 @@
 import UIKit
 
 protocol LoginPresenterInput{
-//  func presentPerson(_ response: Login.FetchUser.Response)
 
+    func presentError(_ error: PersonStoreError)
   func presentPerson(_ response: Login.FetchUser.Response)
 }
 
 protocol LoginPresenterOutput: class {
-    func displayPerson(_ viewModel: Login.FetchUser.ViewModel) 
+    func displayPerson(_ viewModel: Login.FetchUser.ViewModel)
+    func displayError(_ error: Login.FetchUser.Error)
 }
 
 class LoginPresenter: LoginPresenterInput
@@ -43,4 +44,10 @@ class LoginPresenter: LoginPresenterInput
     
     output.displayPerson(viewModel)
   }
+    
+    func presentError(_ error: PersonStoreError) {
+        let err = Login.FetchUser.Error(title: "Error al Iniciar Sesión", message: error.localizedDescription )
+        output.displayError(err)
+    }
+
 }

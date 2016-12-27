@@ -32,5 +32,9 @@ struct Login {
         }
         var displayedPerson:DisplayedPerson
     }
+    struct Error {
+        var title: String
+        var message: String
+    }
   }
 }

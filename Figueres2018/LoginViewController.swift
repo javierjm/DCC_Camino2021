@@ -13,6 +13,7 @@ import UIKit
 
 protocol LoginViewControllerInput {
     func displayPerson(_ viewModel: Login.FetchUser.ViewModel)
+    func displayError(_ error: Login.FetchUser.Error)
 }
 
 protocol LoginViewControllerOutput {
@@ -45,12 +46,16 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     
     func displayPerson(_ viewModel: Login.FetchUser.ViewModel) {
         // NOTE: Display the result from the Presenter
-        // nameTextField.text = viewModel.name
         print("Full Name is: \(viewModel.displayedPerson.nombre) \(viewModel.displayedPerson.apellido1) \(viewModel.displayedPerson.apellido2)")
         OperationQueue.main.addOperation {
                  self.performSegue(withIdentifier: "SucessLoginSegueId", sender: self)
         }
     }
+    
+    func displayError(_ error: Login.FetchUser.Error) {
+        print("Error Title: \(error.title), Error Message: \(error.message)")
+    }
+
     
     // MARK: - TextFieldDelegate
     
@@ -66,22 +71,43 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
         if (string.rangeOfCharacter(from: CharacterSet.letters) != nil) {
             return false
         }
-        guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
         
-        if textField.tag == 0 {
-            return newLength <= 1 // Bool
-        } else {
-            return newLength <= 4 // Bool
+        
+        if (id1TextField.text?.characters.count)! >= 1 && range.length == 0 && textField.tag == 0{
+            id2TextField.text = string
+            id2TextField.becomeFirstResponder()
+            return false
         }
+        
+        if (id2TextField.text?.characters.count)! >= 4 && range.length == 0 && textField.tag == 1{
+            id3TextField.text = string
+            id3TextField.becomeFirstResponder()
+            return false
+        }
+        
+        if (id3TextField.text?.characters.count)! >= 4 && range.length == 0 && textField.tag == 2{
+            id3TextField.resignFirstResponder()
+            return false
+        }
+        
+        return true
+        
+//    guard let text = textField.text else { return true }
+//        let newLength = text.characters.count + string.characters.count - range.length
+// 
+//        if textField.tag == 0 {
+//            return newLength <= 1 // Bool
+//        } else {
+//            return newLength <= 4 // Bool
+//        }
     }
     
     // MARK: - Event Handling
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
-
         
         let idText = "\(id1TextField.text!)\(id2TextField.text!)\(id3TextField.text!)"
         print("La cedula a consultar es: \(idText)")

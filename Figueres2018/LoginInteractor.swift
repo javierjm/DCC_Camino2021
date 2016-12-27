@@ -14,28 +14,35 @@ import UIKit
 protocol LoginInteractorInput {
     func fetchUser(request: Login.FetchUser.Request)
     var person:PersonModel? {get}
-
+    
 }
 
 protocol LoginInteractorOutput {
     func presentPerson(_ response: Login.FetchUser.Response)
+    func presentError(_ error: PersonStoreError)
 }
 
 class LoginInteractor: LoginInteractorInput {
-  var output: LoginInteractorOutput!
+    
+    var output: LoginInteractorOutput!
     var worker = LoginWorker(loginStore:PersonCoreDataSore())
     var person:PersonModel?
 
-  // MARK: - Business logic
-  
-    func fetchUser(request: Login.FetchUser.Request) {
     
+    // MARK: - Business logic
+    
+    func fetchUser(request: Login.FetchUser.Request) {
         
-        worker.fetchUser(request.id) { (person)-> Void in
-            let response = Login.FetchUser.Response(user:person!)
-            UserDefaults.standard.set(person?.nombre, forKey: "currentPerson")
-            self.person = person
-            self.output.presentPerson(response)
+        worker.fetchUser(request.id) { (result) in
+            switch result {
+            case .success(let person) :
+                let response = Login.FetchUser.Response(user:person)
+                UserDefaults.standard.set(person.nombre, forKey: "currentPerson")
+                self.person = person
+                self.output.presentPerson(response)
+            case .failure(let error):
+                self.output.presentError(error)
+            }
         }
-  }
+    }
 }
