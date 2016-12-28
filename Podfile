@@ -6,8 +6,9 @@ target 'Figueres2018' do
   use_frameworks!
 
   # Pods for Figueres2018
-	
-	pod 'mopub-ios-sdk'
+  pod 'Fabric'
+  pod 'TwitterKit'
+  pod 'TwitterCore'
 	pod 'SVProgressHUD'
 
   target 'Figueres2018Tests' do

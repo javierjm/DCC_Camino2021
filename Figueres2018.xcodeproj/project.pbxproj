@@ -295,6 +295,7 @@
 				3B93B2B41DF776CA003352B0 /* Resources */,
 				B9C01C1463AD38A038D2B4DA /* [CP] Embed Pods Frameworks */,
 				12310C95672522B15E50BFA0 /* [CP] Copy Pods Resources */,
+				3B4CB3B41E1419AB0089072A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -412,6 +413,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Figueres2018/Pods-Figueres2018-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3B4CB3B41E1419AB0089072A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 0618c6cc61d16284d4f975cc15fde33c4a765017 62acf3b44a65d9bb7c9f6fd16e54371908f4a90a01e12ec65e28117280ec5ead";
 		};
 		44CCB16DBA9E205ABDBA1A16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -96,16 +96,7 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
         
         return true
         
-//    guard let text = textField.text else { return true }
-//        let newLength = text.characters.count + string.characters.count - range.length
-// 
-//        if textField.tag == 0 {
-//            return newLength <= 1 // Bool
-//        } else {
-//            return newLength <= 4 // Bool
-//        }
     }
-    
     // MARK: - Event Handling
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
         

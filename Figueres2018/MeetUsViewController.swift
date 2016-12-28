@@ -2,7 +2,7 @@
 import UIKit
 // Web
 import WebKit
-
+import TwitterKit
 
 protocol MeetUsViewControllerInput
 {
@@ -41,8 +41,6 @@ class MeetUsViewController: UIViewController, MeetUsViewControllerInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomethingOnLoad()
-        
-        
         self.nameLabel.text = "\(person.nombre!) \(person.apellido1!)"
         
     }
@@ -55,6 +53,8 @@ class MeetUsViewController: UIViewController, MeetUsViewControllerInput {
         
         let request = MeetUs.Something.Request()
         output.doSomething(request: request)
+        
+        loadTwit()
     }
     
     // MARK: - Display logic
@@ -95,4 +95,20 @@ class MeetUsViewController: UIViewController, MeetUsViewControllerInput {
 
     }
 
+    // MARK: - Private Methods
+    
+    func loadTwit() {
+        // TODO: Base this Tweet ID on some data from elsewhere in your app
+        
+        TWTRAPIClient().loadTweet(withID: "631879971628183552") { (tweet: TWTRTweet?, error: Error?) in
+            if let unwrappedTweet = tweet {
+                let tweetView = TWTRTweetView(tweet: unwrappedTweet)
+                tweetView.center =  CGPoint(x: self.view.center.x, y:self.topLayoutGuide.length + tweetView.frame.size.height / 2);
+                self.view.addSubview(tweetView)
+            } else {
+                NSLog("Tweet load error: %@", error!.localizedDescription);
+            }
+        }
+    }
+    
 }
