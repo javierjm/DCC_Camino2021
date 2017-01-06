@@ -29,6 +29,9 @@
 		3B3F5F141DF8DD4B0087D22E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F5F0D1DF8DD4B0087D22E /* ProfileViewController.swift */; };
 		3B3F5F151DF8DD4B0087D22E /* ProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F5F0E1DF8DD4B0087D22E /* ProfileWorker.swift */; };
 		3B3F5F471DF92F200087D22E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F5F461DF92F200087D22E /* WebViewController.swift */; };
+		3B4CB3B71E1462610089072A /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB3B61E1462610089072A /* TwitterAPI.swift */; };
+		3B4CB3BA1E1462F30089072A /* TwitterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB3B91E1462F30089072A /* TwitterWorker.swift */; };
+		3B4CB3BC1E156B140089072A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB3BB1E156B140089072A /* Constants.swift */; };
 		3B93B2BA1DF776CA003352B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B93B2B91DF776CA003352B0 /* AppDelegate.swift */; };
 		3B93B2C11DF776CA003352B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B93B2BF1DF776CA003352B0 /* Main.storyboard */; };
 		3B93B2C31DF776CA003352B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B93B2C21DF776CA003352B0 /* Assets.xcassets */; };
@@ -76,6 +79,9 @@
 		3B3F5F0D1DF8DD4B0087D22E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3B3F5F0E1DF8DD4B0087D22E /* ProfileWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWorker.swift; sourceTree = "<group>"; };
 		3B3F5F461DF92F200087D22E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3B4CB3B61E1462610089072A /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
+		3B4CB3B91E1462F30089072A /* TwitterWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterWorker.swift; sourceTree = "<group>"; };
+		3B4CB3BB1E156B140089072A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B93B2B61DF776CA003352B0 /* Figueres2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Figueres2018.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B93B2B91DF776CA003352B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B93B2C01DF776CA003352B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				3B3F5EEB1DF8A1AA0087D22E /* PersonCoreDataSore.swift */,
+				3B4CB3B61E1462610089072A /* TwitterAPI.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -207,8 +214,17 @@
 		3B3F5F181DF92D620087D22E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3B4CB3BB1E156B140089072A /* Constants.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3B4CB3B81E1462CD0089072A /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				3B4CB3B91E1462F30089072A /* TwitterWorker.swift */,
+			);
+			name = Workers;
 			sourceTree = "<group>";
 		};
 		3B93B2AD1DF776CA003352B0 = {
@@ -234,6 +250,7 @@
 		3B93B2B81DF776CA003352B0 /* Figueres2018 */ = {
 			isa = PBXGroup;
 			children = (
+				3B4CB3B81E1462CD0089072A /* Workers */,
 				3B3F5F181DF92D620087D22E /* Helpers */,
 				3B3F5EEA1DF8A16F0087D22E /* Services */,
 				3B3F5EE31DF872980087D22E /* Model */,
@@ -339,8 +356,13 @@
 				TargetAttributes = {
 					3B93B2B51DF776CA003352B0 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = X58MKT76UZ;
+						DevelopmentTeam = CRH88435JN;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					3B93B2CB1DF776CA003352B0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -518,6 +540,7 @@
 				3B3F5F041DF8DD2C0087D22E /* MeetUsPresenter.swift in Sources */,
 				3B93B2BA1DF776CA003352B0 /* AppDelegate.swift in Sources */,
 				3B3F5F0F1DF8DD4B0087D22E /* ProfileConfigurator.swift in Sources */,
+				3B4CB3BC1E156B140089072A /* Constants.swift in Sources */,
 				3B93B2E71DF776F7003352B0 /* LoginPresenter.swift in Sources */,
 				3B93B2E41DF776F7003352B0 /* LoginConfigurator.swift in Sources */,
 				3B3F5F471DF92F200087D22E /* WebViewController.swift in Sources */,
@@ -527,7 +550,9 @@
 				3B3F5F111DF8DD4B0087D22E /* ProfileModels.swift in Sources */,
 				3B3F5EE21DF86F770087D22E /* CoreDataDemo.xcdatamodeld in Sources */,
 				3B93B2E61DF776F7003352B0 /* LoginModels.swift in Sources */,
+				3B4CB3BA1E1462F30089072A /* TwitterWorker.swift in Sources */,
 				3B3F5F011DF8DD2C0087D22E /* MeetUsConfigurator.swift in Sources */,
+				3B4CB3B71E1462610089072A /* TwitterAPI.swift in Sources */,
 				3B3F5F141DF8DD4B0087D22E /* ProfileViewController.swift in Sources */,
 				3B3F5EE91DF87A780087D22E /* PersonModel.swift in Sources */,
 				3B3F5EE61DF872B30087D22E /* Person+CoreDataClass.swift in Sources */,
@@ -674,10 +699,10 @@
 			baseConfigurationReference = D3F3782EE170A8EA38DB94D7 /* Pods-Figueres2018.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X58MKT76UZ;
+				DEVELOPMENT_TEAM = CRH88435JN;
 				INFOPLIST_FILE = Figueres2018/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacenterconsoltores.Figueres2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rocosoft.Figueres2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -688,10 +713,10 @@
 			baseConfigurationReference = EED2DBD8097583CBC52D11B4 /* Pods-Figueres2018.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X58MKT76UZ;
+				DEVELOPMENT_TEAM = CRH88435JN;
 				INFOPLIST_FILE = Figueres2018/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacenterconsoltores.Figueres2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rocosoft.Figueres2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

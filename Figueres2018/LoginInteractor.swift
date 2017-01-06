@@ -37,7 +37,7 @@ class LoginInteractor: LoginInteractorInput {
             switch result {
             case .success(let person) :
                 let response = Login.FetchUser.Response(user:person)
-                UserDefaults.standard.set(person.nombre, forKey: "currentPerson")
+                UserDefaults.standard.set(person.nombre, forKey: K.UserDefautls.currentUser)
                 self.person = person
                 self.output.presentPerson(response)
             case .failure(let error):

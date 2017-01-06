@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import TwitterKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,11 +18,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let dateFormatter = DateFormatter()
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Twitter.self])
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            
+        }
         
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+
         return true
+    }
+
+    // Support for background fetch
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let api = TwitterAPI()
+        let twitterW = TwitterWorker(twitterAPIStore: api)
+        twitterW.fetchLatestTweets { (tweets)->Void in
+            if tweets.count > 0 {
+                completionHandler(.newData)
+                for tweet in tweets {
+                    print(tweet.text)
+                    
+                    
+                    let content = UNMutableNotificationContent()
+                    content.title = "New Tweet From Figueres"
+                    content.subtitle = tweet.tweetID
+                    content.body = tweet.text
+                    UserDefaults.standard.set(tweet.tweetID, forKey: K.UserDefautls.lastTweetID)
+                    // Deliver the notification in five seconds.
+                    content.sound = UNNotificationSound.default()
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
+                                                                    repeats: false)
+                    
+                    // Schedule the notification.
+                    let request = UNNotificationRequest(identifier: "FiveSecond", content: content, trigger: trigger)
+                    let center = UNUserNotificationCenter.current()
+                    center.add(request, withCompletionHandler:nil)
+                                        
+                }
+            } else {
+                completionHandler(.noData)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

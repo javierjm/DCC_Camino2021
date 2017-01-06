@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 protocol LoginViewControllerInput {
     func displayPerson(_ viewModel: Login.FetchUser.ViewModel)
@@ -24,6 +25,8 @@ protocol LoginViewControllerOutput {
 class LoginViewController: UIViewController, LoginViewControllerInput, UITextFieldDelegate {
     var output: LoginViewControllerOutput!
     var router: LoginRouter!
+    var twitterW: TwitterWorker!
+    
     @IBOutlet var idTextFields: [UITextField]!
     @IBOutlet weak var id1TextField: UITextField!
     @IBOutlet weak var id2TextField: UITextField!

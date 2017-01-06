@@ -54,7 +54,7 @@ class MeetUsViewController: UIViewController, MeetUsViewControllerInput {
         let request = MeetUs.Something.Request()
         output.doSomething(request: request)
         
-        loadTwit()
+        //loadTwit()
     }
     
     // MARK: - Display logic
@@ -100,15 +100,29 @@ class MeetUsViewController: UIViewController, MeetUsViewControllerInput {
     func loadTwit() {
         // TODO: Base this Tweet ID on some data from elsewhere in your app
         
-        TWTRAPIClient().loadTweet(withID: "631879971628183552") { (tweet: TWTRTweet?, error: Error?) in
-            if let unwrappedTweet = tweet {
-                let tweetView = TWTRTweetView(tweet: unwrappedTweet)
-                tweetView.center =  CGPoint(x: self.view.center.x, y:self.topLayoutGuide.length + tweetView.frame.size.height / 2);
-                self.view.addSubview(tweetView)
-            } else {
-                NSLog("Tweet load error: %@", error!.localizedDescription);
+        let client = TWTRAPIClient()
+        let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        let params = ["user_id": "26883683", "count" : "10"]
+
+        var clientError : NSError?
+        
+        let request = client.urlRequest(withMethod: "GET", url: statusesShowEndpoint, parameters: params, error: &clientError)
+        
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+            if connectionError != nil {
+                print("Error: \(connectionError)")
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print("json: \(json)")
+            } catch let jsonError as NSError {
+                print("json error: \(jsonError.localizedDescription)")
             }
         }
+    
+
+        
     }
     
 }
