@@ -606,6 +606,7 @@
 		3B93B2D31DF776CA003352B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -655,6 +656,7 @@
 		3B93B2D41DF776CA003352B0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -698,6 +700,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3F3782EE170A8EA38DB94D7 /* Pods-Figueres2018.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CRH88435JN;
 				INFOPLIST_FILE = Figueres2018/Info.plist;
@@ -712,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EED2DBD8097583CBC52D11B4 /* Pods-Figueres2018.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CRH88435JN;
 				INFOPLIST_FILE = Figueres2018/Info.plist;
@@ -726,7 +730,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD6229E69B8F77F97ED2A0B8 /* Pods-Figueres2018Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = X58MKT76UZ;
 				INFOPLIST_FILE = Figueres2018Tests/Info.plist;
@@ -742,7 +746,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60AE9A3BE6169CD5898BD396 /* Pods-Figueres2018Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = X58MKT76UZ;
 				INFOPLIST_FILE = Figueres2018Tests/Info.plist;

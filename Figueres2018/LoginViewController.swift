@@ -102,10 +102,16 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     }
     // MARK: - Event Handling
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
-        
-        let idText = "\(id1TextField.text!)\(id2TextField.text!)\(id3TextField.text!)"
-        print("La cedula a consultar es: \(idText)")
-        let request = Login.FetchUser.Request(id:idText)
-        output.fetchUser(request: request)
+        switch(id1TextField.text, id2TextField.text, id3TextField.text){
+        case let (.some(firstNumber), .some(secondNumber), .some(thirdNumber)):
+            print("La cedula a consultar es: \(firstNumber)-\(secondNumber)-\(thirdNumber)")
+            let fullId = firstNumber+secondNumber+thirdNumber
+            print("Y la cedula formateada es: \(fullId)")
+            let request = Login.FetchUser.Request(id:fullId)
+            output.fetchUser(request: request)
+        default:
+            // Must show an error to user 
+            print("Por favor ingrese una cedula válida")
+        }
     }
 }

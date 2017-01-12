@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C2A851E4A7A9BE4B3F7A555289DB3239"
-               BuildableName = "Pods_Figueres2018.framework"
-               BlueprintName = "Pods-Figueres2018"
+               BlueprintIdentifier = "8B45D2FB5F4BC304D75324A66B96EA5E"
+               BuildableName = "p2_OAuth2.framework"
+               BlueprintName = "p2.OAuth2"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C2A851E4A7A9BE4B3F7A555289DB3239"
-            BuildableName = "Pods_Figueres2018.framework"
-            BlueprintName = "Pods-Figueres2018"
+            BlueprintIdentifier = "8B45D2FB5F4BC304D75324A66B96EA5E"
+            BuildableName = "p2_OAuth2.framework"
+            BlueprintName = "p2.OAuth2"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

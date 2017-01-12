@@ -19,20 +19,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>p2.OAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>44B7C9B3559F9710D51D646B43631DF7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7A62CB4E9554E38543A36CB7CE331D2F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B43707A0EFA7EFD21B7B6383CECF882B</key>
+		<key>8B45D2FB5F4BC304D75324A66B96EA5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9593756C0775D66DAF618D0311D7A8B</key>
+		<key>C2A851E4A7A9BE4B3F7A555289DB3239</key>
 		<dict>
 			<key>primary</key>
 			<true/>
