@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>KeychainAccess.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Figueres2018.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,7 +29,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>p2.OAuth2.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,7 +37,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>44B7C9B3559F9710D51D646B43631DF7</key>
+		<key>0F8C3FC95F49F1131DF0CF2EEA42F60C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C6CDD5D06ACC2E7BE47959EFDD5AD4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5ED12664DA675443937C7A208A9682</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B45D2FB5F4BC304D75324A66B96EA5E</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2A851E4A7A9BE4B3F7A555289DB3239</key>
+		<key>8905DB6521F8FDC34752B69DEE3FDEB7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

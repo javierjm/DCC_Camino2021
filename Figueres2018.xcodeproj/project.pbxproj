@@ -44,6 +44,7 @@
 		3B93B2E81DF776F7003352B0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B93B2E11DF776F7003352B0 /* LoginRouter.swift */; };
 		3B93B2E91DF776F7003352B0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B93B2E21DF776F7003352B0 /* LoginViewController.swift */; };
 		3B93B2EA1DF776F7003352B0 /* LoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B93B2E31DF776F7003352B0 /* LoginWorker.swift */; };
+		3BD010C01E29948000EAE023 /* AccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD010BF1E29948000EAE023 /* AccessTokenAdapter.swift */; };
 		EC5091DF97BD91EF2F669D87 /* Pods_Figueres2018Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEC214BB9633739C1EF464C /* Pods_Figueres2018Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		3B93B2E11DF776F7003352B0 /* LoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		3B93B2E21DF776F7003352B0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B93B2E31DF776F7003352B0 /* LoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWorker.swift; sourceTree = "<group>"; };
+		3BD010BF1E29948000EAE023 /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
 		4BEC214BB9633739C1EF464C /* Pods_Figueres2018Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Figueres2018Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60AE9A3BE6169CD5898BD396 /* Pods-Figueres2018Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figueres2018Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Figueres2018Tests/Pods-Figueres2018Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BD6229E69B8F77F97ED2A0B8 /* Pods-Figueres2018Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figueres2018Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Figueres2018Tests/Pods-Figueres2018Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				3B4CB3BB1E156B140089072A /* Constants.swift */,
+				3BD010BF1E29948000EAE023 /* AccessTokenAdapter.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				3B3F5F071DF8DD2C0087D22E /* MeetUsWorker.swift in Sources */,
 				3B3F5F151DF8DD4B0087D22E /* ProfileWorker.swift in Sources */,
 				3B3F5F041DF8DD2C0087D22E /* MeetUsPresenter.swift in Sources */,
+				3BD010C01E29948000EAE023 /* AccessTokenAdapter.swift in Sources */,
 				3B93B2BA1DF776CA003352B0 /* AppDelegate.swift in Sources */,
 				3B3F5F0F1DF8DD4B0087D22E /* ProfileConfigurator.swift in Sources */,
 				3B4CB3BC1E156B140089072A /* Constants.swift in Sources */,

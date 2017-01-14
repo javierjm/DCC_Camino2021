@@ -10,9 +10,10 @@ target 'Figueres2018' do
     pod 'TwitterKit'
     pod 'TwitterCore'
     pod 'SVProgressHUD'
-    pod 'p2.OAuth2', '~> 3.0'
-    
-    
+    pod 'Alamofire', '~> 4.0'
+    pod 'SwiftyJSON'
+    pod 'KeychainAccess'
+
     target 'Figueres2018Tests' do
         inherit! :search_paths
         # Pods for testing

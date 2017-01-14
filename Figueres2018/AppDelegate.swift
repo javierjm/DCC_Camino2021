@@ -11,13 +11,21 @@ import CoreData
 import Fabric
 import TwitterKit
 import UserNotifications
+import SwiftyJSON
+import Alamofire
+import KeychainAccess
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let dateFormatter = DateFormatter()
+    let clientSecret = "3674277790370273599"
+    let clientId = "3MVG9jfQT7vUue.HqM6QpUVnyetAT0hnMDeHFwJyRLEUdv90PB0P31sRrLQu_dSkdLJsC4skCo5VDx2MBnnup"
+    let username = "entebbe@incompany.cr.WSapp"
+    let password = "Laluchasinfin2017"
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Twitter.self])
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -26,7 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-
+        
+        let keychain = Keychain(service: "com.datacenter.figueres2018")
+        if let token = keychain["access_token"] {
+            print("There is a token already installed in keychain and is: \(token)")
+            fetchuser(userId: "110400781", access_token: token)
+        } else {
+            startAlamofireOauth()
+        }
         return true
     }
 
@@ -85,6 +100,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        // you should probably first check if this is the callback being opened
+        if url.scheme == "salesforce" {
+            // if your oauth2 instance lives somewhere else, adapt accordingly
+//            oauth2.handleRedirectURL(url)
+            return true
+        }
+        return false
+    }
     
     // MARK: - Core Data stack
     
@@ -264,7 +291,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // MARK - OAuth
+    
+    func startAlamofireOauth() {
+        
+        let parameters: Parameters = [
+            "grant_type": "password",
+            "client_id" : clientId,
+            "client_secret" : clientSecret,
+            "username": username,
+            "password": password
+        ]
+        
+        Alamofire.request("https://cs52.salesforce.com/services/oauth2/token", method: .post, parameters: parameters, encoding: JSONEncoding.default).authenticate(user: username, password: password).responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                let json = JSON(data)
+                let issued_at = json["issued_at"]
+                let access_token = json["access_token"].stringValue
+                
+                print("Access token: \(access_token), issued at: \(issued_at)")
+                let keychain = Keychain(service: "com.datacenter.figueres2018")
+                keychain["access_token"] = access_token
+                
 
-
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchuser(userId:String, access_token:String) {
+        
+        let sessionManager = SessionManager()
+        sessionManager.adapter = AccessTokenAdapter(accessToken:access_token)
+        let headers: HTTPHeaders = [
+            "Authorization" : "Bearer \(access_token)"
+        ]
+        Alamofire.request("https://cs59.salesforce.com/services/apexrest/Contacts/\(userId)", method: .get , encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                let json = JSON(data)
+                print (json)
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+//        sessionManager.request("https://cs59.salesforce.com/services/apexrest/Contacts/\(userId)", method: .get, encoding: JSONEncoding.default).responseJSON { response in
+//            switch response.result {
+//            case .success(let data):
+//                let json = JSON(data)
+//                print (json)
+//            case .failure(let error):
+//                print(error)
+//                
+//            }
+//        }
+    }
 }
 
