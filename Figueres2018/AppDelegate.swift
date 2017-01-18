@@ -34,14 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+                    startAlamofireOauth()
+
         
-        let keychain = Keychain(service: "com.datacenter.figueres2018")
-        if let token = keychain["access_token"] {
-            print("There is a token already installed in keychain and is: \(token)")
-            fetchuser(userId: "110400781", access_token: token)
-        } else {
-            startAlamofireOauth()
-        }
+//        let keychain = Keychain(service: "com.datacenter.figueres2018")
+//        if let token = keychain["access_token"] {
+//            print("There is a token already installed in keychain and is: \(token)")
+//            fetchuser(userId: "110400781", access_token: token)
+
+//
+//        } else {
+//            startAlamofireOauth()
+//        }
         return true
     }
 
@@ -300,13 +304,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "client_id" : clientId,
             "client_secret" : clientSecret,
             "username": username,
-            "password": password
+            "password": password,
+            "redirect_uri": "https://cs52.salesforce.com/services/oauth2/token"
         ]
-        
-        Alamofire.request("https://cs52.salesforce.com/services/oauth2/token", method: .post, parameters: parameters, encoding: JSONEncoding.default).authenticate(user: username, password: password).responseJSON { response in
+        let headers: HTTPHeaders = [
+            "content-type" : "application/x-www-form-urlencoded; charset=utf-8"
+        ]
+
+        //https://login.salesforce.com/services/oauth2/token
+        //https://cs52.salesforce.com/services/oauth2/token
+        Alamofire.request("https://cs52.salesforce.com/services/oauth2/token", method: .post, parameters: parameters, encoding: URLEncoding.httpBody, headers: headers).authenticate(user: username, password: password).responseJSON { response in
             switch response.result {
             case .success(let data):
                 let json = JSON(data)
+                
+                guard json["error"].string == nil else {
+                    print("Error returned by server: \(json["error"])")
+                    let keychain = Keychain(service: "com.datacenter.figueres2018")
+                    _ = try! keychain.remove("access_token")
+                    
+                    return
+                }
                 let issued_at = json["issued_at"]
                 let access_token = json["access_token"].stringValue
                 
@@ -326,28 +344,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionManager = SessionManager()
         sessionManager.adapter = AccessTokenAdapter(accessToken:access_token)
         let headers: HTTPHeaders = [
-            "Authorization" : "Bearer \(access_token)"
+            "Authorization" : "Bearer \(access_token)",
+            "content-type" : "application/x-www-form-urlencoded; charset=utf-8"
         ]
-        Alamofire.request("https://cs59.salesforce.com/services/apexrest/Contacts/\(userId)", method: .get , encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request("https://cs59.salesforce.com/services/apexrest/Contacts/\(userId)", method: .get , encoding: URLEncoding.httpBody, headers: headers).responseJSON { response in
             switch response.result {
             case .success(let data):
                 let json = JSON(data)
+                guard json["error"].string == nil else {
+                    print("Error returned by server: \(json["error"])")
+                    return
+                }
                 print (json)
             case .failure(let error):
                 print(error)
                 
             }
         }
-//        sessionManager.request("https://cs59.salesforce.com/services/apexrest/Contacts/\(userId)", method: .get, encoding: JSONEncoding.default).responseJSON { response in
-//            switch response.result {
-//            case .success(let data):
-//                let json = JSON(data)
-//                print (json)
-//            case .failure(let error):
-//                print(error)
-//                
-//            }
-//        }
     }
+    
 }
 

@@ -11,6 +11,7 @@
 
 import UIKit
 import TwitterKit
+import SVProgressHUD
 
 protocol LoginViewControllerInput {
     func displayPerson(_ viewModel: Login.FetchUser.ViewModel)
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     func displayPerson(_ viewModel: Login.FetchUser.ViewModel) {
         // NOTE: Display the result from the Presenter
         print("Full Name is: \(viewModel.displayedPerson.nombre) \(viewModel.displayedPerson.apellido1) \(viewModel.displayedPerson.apellido2)")
+                SVProgressHUD.dismiss()
         OperationQueue.main.addOperation {
                  self.performSegue(withIdentifier: "SucessLoginSegueId", sender: self)
         }
@@ -57,6 +59,7 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     
     func displayError(_ error: Login.FetchUser.Error) {
         print("Error Title: \(error.title), Error Message: \(error.message)")
+        SVProgressHUD.dismiss()
     }
 
     
@@ -102,6 +105,8 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
     }
     // MARK: - Event Handling
     @IBAction func loginButtonPressed(_ sender: AnyObject) {
+        SVProgressHUD.show()
+        
         switch(id1TextField.text, id2TextField.text, id3TextField.text){
         case let (.some(firstNumber), .some(secondNumber), .some(thirdNumber)):
             print("La cedula a consultar es: \(firstNumber)-\(secondNumber)-\(thirdNumber)")
@@ -109,6 +114,7 @@ class LoginViewController: UIViewController, LoginViewControllerInput, UITextFie
             print("Y la cedula formateada es: \(fullId)")
             let request = Login.FetchUser.Request(id:fullId)
             output.fetchUser(request: request)
+            
         default:
             // Must show an error to user 
             print("Por favor ingrese una cedula válida")

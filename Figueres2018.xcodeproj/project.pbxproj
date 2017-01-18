@@ -100,6 +100,7 @@
 		3B93B2E21DF776F7003352B0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B93B2E31DF776F7003352B0 /* LoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWorker.swift; sourceTree = "<group>"; };
 		3BD010BF1E29948000EAE023 /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
+		3BD010C21E2DB0C100EAE023 /* SVProgressHUD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Bridging-Header.h"; sourceTree = "<group>"; };
 		4BEC214BB9633739C1EF464C /* Pods_Figueres2018Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Figueres2018Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60AE9A3BE6169CD5898BD396 /* Pods-Figueres2018Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figueres2018Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Figueres2018Tests/Pods-Figueres2018Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BD6229E69B8F77F97ED2A0B8 /* Pods-Figueres2018Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figueres2018Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Figueres2018Tests/Pods-Figueres2018Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 		3B3F5F181DF92D620087D22E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3BD010C11E2DB0A100EAE023 /* Bridging */,
 				3B4CB3BB1E156B140089072A /* Constants.swift */,
 				3BD010BF1E29948000EAE023 /* AccessTokenAdapter.swift */,
 			);
@@ -300,6 +302,14 @@
 				3B93B2E31DF776F7003352B0 /* LoginWorker.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		3BD010C11E2DB0A100EAE023 /* Bridging */ = {
+			isa = PBXGroup;
+			children = (
+				3BD010C21E2DB0C100EAE023 /* SVProgressHUD-Bridging-Header.h */,
+			);
+			name = Bridging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -711,6 +721,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rocosoft.Figueres2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Figueres2018/SVProgressHUD-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -726,6 +737,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rocosoft.Figueres2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Figueres2018/SVProgressHUD-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
